@@ -15,13 +15,13 @@ Discordサーバー内でユーザーの勉強時間を記録・共有し、学�
 
 - Node.js v20以降
 - pnpm
-- Discord Bot Token と Client ID
+- Discord Bot Token、Client ID、Guild ID
 
 ### 2. 環境設定
 
 1. プロジェクトをクローンまたはダウンロード
 2. `.env.example` をコピーして `.env` を作成
-3. Discord Bot Token と Client ID を設定
+3. Discord Bot Token、Client ID、Guild ID を設定
 
 ```bash
 cp .env.example .env
@@ -31,6 +31,7 @@ cp .env.example .env
 ```
 DISCORD_TOKEN=your_discord_bot_token_here
 DISCORD_CLIENT_ID=your_discord_client_id_here
+DISCORD_GUILD_ID=your_discord_guild_id_here
 ```
 
 ### 3. インストール・ビルド
@@ -154,7 +155,8 @@ CREATE TABLE study_sessions (
 
 2. **コマンドが表示されない**
    - `pnpm deploy-commands` を実行してコマンドを登録
-   - Discord側の反映に最大1時間かかる場合があります
+   - ギルドコマンドのため即座に反映されます
+   - DISCORD_GUILD_IDが正しく設定されているか確認
 
 3. **データベースエラー**
    - データベースファイルの書き込み権限を確認

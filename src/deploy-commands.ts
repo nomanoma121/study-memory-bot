@@ -30,8 +30,15 @@ async function deployCommands() {
 
     console.log(`🚀 Started refreshing ${commands.length} application (/) commands.`);
 
+    // ギルド専用コマンドとして登録（即座に反映される）
+    const guildId = process.env.DISCORD_GUILD_ID;
+    if (!guildId) {
+      console.error('❌ DISCORD_GUILD_ID environment variable is required for guild commands');
+      process.exit(1);
+    }
+
     const data = await rest.put(
-      Routes.applicationCommands(process.env.DISCORD_CLIENT_ID!),
+      Routes.applicationGuildCommands(process.env.DISCORD_CLIENT_ID!, guildId),
       { body: commands },
     ) as any[];
 
