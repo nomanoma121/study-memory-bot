@@ -3,6 +3,7 @@ import { config } from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
+import { DailyReportScheduler } from './utils/scheduler.js';
 
 config();
 
@@ -43,9 +44,15 @@ async function loadCommands() {
   }
 }
 
+let dailyReportScheduler: DailyReportScheduler;
+
 client.once(Events.ClientReady, async (readyClient) => {
   console.log(`✓ Ready! Logged in as ${readyClient.user.tag}`);
   console.log(`✓ Bot is running in ${client.guilds.cache.size} server(s)`);
+  
+  // デイリーレポートスケジューラーを開始
+  dailyReportScheduler = new DailyReportScheduler(client);
+  dailyReportScheduler.start();
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -78,6 +85,9 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
 process.on('SIGINT', () => {
   console.log('\n✓ Gracefully shutting down...');
+  if (dailyReportScheduler) {
+    dailyReportScheduler.stop();
+  }
   client.destroy();
   process.exit(0);
 });

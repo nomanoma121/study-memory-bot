@@ -3,8 +3,11 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# better-sqlite3のビルドに必要なツールをインストール
-RUN apk add --no-cache python3 make g++
+# better-sqlite3のビルドに必要なツールと日本時間設定をインストール
+RUN apk add --no-cache python3 make g++ tzdata
+
+# タイムゾーンを日本時間に設定
+ENV TZ=Asia/Tokyo
 
 # 依存関係のインストール
 COPY package.json ./

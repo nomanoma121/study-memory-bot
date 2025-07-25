@@ -46,6 +46,11 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         inline: false
       },
       {
+        name: '📊 デイリーレポート',
+        value: '`/report [date:YYYY-MM-DD]`\nサーバー全体の勉強レポートを表示（毎日午後11時に自動送信）',
+        inline: false
+      },
+      {
         name: '❓ ヘルプ',
         value: '`/help`\nこのヘルプメッセージを表示',
         inline: false
