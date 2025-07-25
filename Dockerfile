@@ -12,7 +12,7 @@ RUN pnpm install --frozen-lockfile
 
 # ソースコードをコピーしてコンパイル
 COPY . .
-RUN pnpm tsc
+RUN pnpm run build
 
 # 本番用の依存関係のみを再インストール
 RUN pnpm install --prod --frozen-lockfile

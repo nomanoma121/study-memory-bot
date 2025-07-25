@@ -1,6 +1,5 @@
 # 依存関係とログ
 node_modules
-pnpm-lock.yaml
 npm-debug.log
 
 # コンパイル後のファイル
