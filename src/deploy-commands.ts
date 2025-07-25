@@ -7,7 +7,7 @@ config();
 
 const commands: any[] = [];
 
-async function deployCommands() {
+export async function deployCommands() {
   try {
     const commandsPath = path.join(__dirname, 'commands');
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -50,4 +50,7 @@ async function deployCommands() {
   }
 }
 
-deployCommands();
+// 直接実行された場合のみデプロイを実行
+if (require.main === module) {
+  deployCommands();
+}

@@ -91,8 +91,21 @@ process.on('uncaughtException', (error) => {
   process.exit(1);
 });
 
+async function deployCommands() {
+  try {
+    const { deployCommands: deploy } = await import('./deploy-commands.js');
+    await deploy();
+  } catch (error) {
+    console.error('Failed to deploy commands:', error);
+    process.exit(1);
+  }
+}
+
 async function main() {
   try {
+    console.log('📡 Deploying slash commands...');
+    await deployCommands();
+    
     console.log('🤖 Loading commands...');
     await loadCommands();
     
