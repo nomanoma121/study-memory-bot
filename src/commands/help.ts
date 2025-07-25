@@ -36,6 +36,16 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         inline: false
       },
       {
+        name: '➕ 勉強記録の手動追加',
+        value: '`/add subject:<内容> minutes:<時間> [date:YYYY-MM-DD] [notes:<メモ>]`\n過去の勉強セッションを手動で追加\n\n例: `/add subject:数学 minutes:90 date:2024-01-15`',
+        inline: false
+      },
+      {
+        name: '✏️ 勉強記録の編集・削除',
+        value: '`/edit list` - 編集可能な記録一覧\n`/edit delete id:<ID>` - 記録削除\n`/edit update id:<ID> [subject:<内容>] [minutes:<時間>] [notes:<メモ>]` - 記録更新',
+        inline: false
+      },
+      {
         name: '❓ ヘルプ',
         value: '`/help`\nこのヘルプメッセージを表示',
         inline: false
