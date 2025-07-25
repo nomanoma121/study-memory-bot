@@ -1,0 +1,9 @@
+services:
+  bot:
+    # Dockerfileがある場所を指定してビルドする
+    build: .
+    # 起動に失敗したら自動で再起動する
+    restart: always
+    # .envファイルから環境変数を読み込む
+    env_file:
+      - .env

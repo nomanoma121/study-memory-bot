@@ -1,0 +1,14 @@
+# 依存関係とログ
+node_modules
+pnpm-lock.yaml
+npm-debug.log
+
+# コンパイル後のファイル
+dist
+
+# 環境変数ファイル
+.env
+
+# OS・エディタ固有のファイル
+.DS_Store
+.vscode/
