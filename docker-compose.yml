@@ -7,3 +7,9 @@ services:
     # .envファイルから環境変数を読み込む
     env_file:
       - .env
+    # データベースファイルの永続化
+    volumes:
+      - ./data:/app/data
+    # データベースファイルを data ディレクトリに保存するための環境変数
+    environment:
+      - DATABASE_PATH=/app/data/study_data.db

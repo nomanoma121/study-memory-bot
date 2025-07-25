@@ -3,4 +3,5 @@ dist/
 *.log
 .env
 study_data.db
+data/
 .DS_Store
