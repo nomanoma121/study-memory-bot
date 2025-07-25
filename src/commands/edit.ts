@@ -8,7 +8,7 @@ export const data = new SlashCommandBuilder()
   .addSubcommand(subcommand =>
     subcommand
       .setName('list')
-      .setDescription('編集可能な最近の勉強記録一覧を表示')
+      .setDescription('編集可能な最近の勉強記録一覧を表示（過去24時間）')
   )
   .addSubcommand(subcommand =>
     subcommand
@@ -78,8 +78,8 @@ async function handleList(interaction: ChatInputCommandInteraction) {
   }
 
   try {
-    // 過去7日間のセッションを取得
-    const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+    // 過去24時間のセッションを取得
+    const oneDayAgo = Date.now() - (24 * 60 * 60 * 1000);
     const stmt = db['db'].prepare(`
       SELECT * FROM study_sessions 
       WHERE userId = ? AND guildId = ? AND endTime IS NOT NULL AND startTime >= ?
@@ -87,11 +87,11 @@ async function handleList(interaction: ChatInputCommandInteraction) {
       LIMIT 10
     `);
     
-    const sessions = stmt.all(userId, guildId, sevenDaysAgo);
+    const sessions = stmt.all(userId, guildId, oneDayAgo);
 
     if (sessions.length === 0) {
       await interaction.reply({
-        content: '編集可能な勉強記録がありません（過去7日間）。',
+        content: '編集可能な勉強記録がありません（過去24時間）。',
         ephemeral: true
       });
       return;
@@ -99,7 +99,7 @@ async function handleList(interaction: ChatInputCommandInteraction) {
 
     const embed = new EmbedBuilder()
       .setColor('#FEE75C')
-      .setTitle('編集可能な勉強記録一覧（過去7日間）')
+      .setTitle('編集可能な勉強記録一覧（過去24時間）')
       .setDescription('以下の記録を編集・削除できます：');
 
     sessions.forEach((session: any) => {

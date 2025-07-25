@@ -138,7 +138,7 @@ docker run -d --name study-bot --env-file .env discord-study-bot
 - `/rank period:week`
 
 ### `/edit list` / `/edit delete` / `/edit update`
-勉強記録の編集・削除を行います（過去7日間限定）。
+勉強記録の編集・削除を行います（過去24時間限定）。
 
 - `/edit list` - 編集可能な記録一覧を表示
 - `/edit delete id:<ID>` - 指定IDの記録を削除
