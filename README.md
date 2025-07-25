@@ -125,6 +125,11 @@ docker run -d --name study-bot --env-file .env discord-study-bot
 **例:**
 - `/rank period:week`
 
+### `/help`
+ボットの使い方とコマンド一覧を表示します。
+
+初回利用時や使い方を忘れた時にご利用ください。
+
 ## データベース
 
 - **データベース**: SQLite
