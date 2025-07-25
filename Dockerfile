@@ -3,6 +3,9 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# better-sqlite3のビルドに必要なツールをインストール
+RUN apk add --no-cache python3 make g++
+
 # pnpmを有効化
 RUN corepack enable
 
@@ -10,12 +13,16 @@ RUN corepack enable
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
+# better-sqlite3を明示的にリビルド
+RUN pnpm rebuild better-sqlite3
+
 # ソースコードをコピーしてコンパイル
 COPY . .
 RUN pnpm run build
 
 # 本番用の依存関係のみを再インストール
 RUN pnpm install --prod --frozen-lockfile
+RUN pnpm rebuild better-sqlite3
 
 
 # ステージ2: 本番環境
