@@ -37,7 +37,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       },
       {
         name: '➕ 勉強記録の手動追加',
-        value: '`/add subject:<内容> minutes:<時間> [date:YYYY-MM-DD] [notes:<メモ>]`\n過去の勉強セッションを手動で追加\n\n例: `/add subject:数学 minutes:90 date:2024-01-15`',
+        value: '`/study add subject:<内容> minutes:<時間> [date:YYYY-MM-DD] [notes:<メモ>]`\n過去の勉強記録を手動で追加\n\n例: `/study add subject:数学 minutes:90 date:2024-01-15`',
         inline: false
       },
       {

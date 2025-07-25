@@ -100,6 +100,18 @@ docker run -d --name study-bot --env-file .env discord-study-bot
 - `/study stop`
 - `/study stop note:問題集を3章まで完了`
 
+### `/study add <subject> <minutes> [date] [notes]`
+過去の勉強記録を手動で追加します。
+
+- **subject** (必須): 勉強した内容
+- **minutes** (必須): 勉強時間（分）
+- **date** (オプション): 勉強した日付 (YYYY-MM-DD 形式、省略時は今日)
+- **notes** (オプション): 勉強の内容やメモ
+
+**例:**
+- `/study add subject:数学 minutes:90`
+- `/study add subject:React minutes:120 date:2024-01-15 notes:コンポーネント作成`
+
 ### `/status`
 現在サーバー内で勉強しているメンバーの一覧と進行時間を表示します。
 
@@ -124,6 +136,29 @@ docker run -d --name study-bot --env-file .env discord-study-bot
 
 **例:**
 - `/rank period:week`
+
+### `/edit list` / `/edit delete` / `/edit update`
+勉強記録の編集・削除を行います（過去7日間限定）。
+
+- `/edit list` - 編集可能な記録一覧を表示
+- `/edit delete id:<ID>` - 指定IDの記録を削除
+- `/edit update id:<ID> [subject:<内容>] [minutes:<時間>] [notes:<メモ>]` - 記録内容を更新
+
+**例:**
+- `/edit list`
+- `/edit delete id:123`
+- `/edit update id:123 subject:英語 minutes:60`
+
+### `/report [date]`
+サーバー全体の勉強レポートを表示します。
+
+- **date** (オプション): レポートの日付 (YYYY-MM-DD 形式、省略時は今日)
+
+毎日午後11時に自動でレポートが送信されます。
+
+**例:**
+- `/report`
+- `/report date:2024-01-15`
 
 ### `/help`
 ボットの使い方とコマンド一覧を表示します。
